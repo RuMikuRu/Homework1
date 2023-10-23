@@ -1,4 +1,4 @@
-package org.example.utils;
+package org.example.utils.keys;
 
 public class KeyGroupNum{
     int key;
@@ -10,8 +10,6 @@ public class KeyGroupNum{
     public int hashCode()
     {
         int hash = this.key;
-        System.out.println("hashCode for key: "
-                + key + " = " + hash);
         return hash;
     }
 

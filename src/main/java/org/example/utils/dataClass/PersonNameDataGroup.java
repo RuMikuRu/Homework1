@@ -1,6 +1,7 @@
-package org.example.model;
+package org.example.utils.dataClass;
 
-import org.example.utils.KeyFirstFamily;
+import org.example.model.Person;
+import org.example.utils.keys.KeyFirstFamily;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,9 +38,10 @@ public class PersonNameDataGroup {
     }
 
 
-    public Person[] getPersons(String firstFamily) {
-        if (data.containsKey(firstFamily.charAt(0))) {
-            return data.get(firstFamily.charAt(0));
+    public Person[] getPersons(char firstFamily) {
+        KeyFirstFamily key = new KeyFirstFamily(firstFamily);
+        if (data.containsKey(key)) {
+            return data.get(key);
         } else {
             System.out.println("Такой буквы не существует");
             throw new NullPointerException();

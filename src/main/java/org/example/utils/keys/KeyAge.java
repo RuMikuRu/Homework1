@@ -1,6 +1,4 @@
-package org.example.utils;
-
-import org.example.model.Person;
+package org.example.utils.keys;
 
 public class KeyAge{
     int key;
@@ -12,8 +10,6 @@ public class KeyAge{
     public int hashCode()
     {
         int hash = key;
-        System.out.println("hashCode for key: "
-                + key + " = " + hash);
         return hash;
     }
 

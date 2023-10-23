@@ -1,24 +1,29 @@
-package org.example.model;
+package org.example.utils.dataClass;
 
-import org.example.utils.KeyGroupNum;
+import org.example.model.Person;
+import org.example.utils.keys.KeyGroupNum;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ClassroomDataGroups {
     HashMap<KeyGroupNum, Person[]> data = new HashMap<>();
 
     public void addPerson(Person person) {
         int groupNum = person.getGroup();
-        if (data.containsKey(groupNum)) {
-            Person[] groupData = data.get(groupNum);
-            int lastElement = (int) Arrays.stream(groupData).count();
+        KeyGroupNum key = new KeyGroupNum(groupNum);
+        if (data.containsKey(key)) {
+            Person[] groupData = data.get(key);
+            int lastElement = Arrays.stream(groupData)
+                    .takeWhile(Objects::nonNull)
+                    .toArray().length;
             if (lastElement < groupData.length) {
-                groupData[lastElement + 1] = person;
+                groupData[lastElement] = person;
             } else {
                 Person[] newGroupData = new Person[groupData.length * 2];
                 System.arraycopy(groupData, 0, newGroupData, 0, groupData.length);
-                newGroupData[lastElement+1] = person;
+                newGroupData[lastElement] = person;
                 data.put(new KeyGroupNum(person.getGroup()), newGroupData);
             }
         } else {
@@ -29,8 +34,9 @@ public class ClassroomDataGroups {
     }
 
     public Person[] getPersons(int groupNum) {
-        if (data.containsKey(groupNum)) {
-            return data.get(groupNum);
+        KeyGroupNum key = new KeyGroupNum(groupNum);
+        if (data.containsKey(key)) {
+            return data.get(key);
         } else {
             System.out.println("Такой группы не существует");
             throw new NullPointerException();
