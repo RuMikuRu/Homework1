@@ -31,7 +31,7 @@ public class PersonNameDataGroup {
             }
 
         } else {
-            Person[] firstFamilyData = new Person[100];  // Initial array size for new group
+            Person[] firstFamilyData = new Person[100];  
             firstFamilyData[0] = person;
             data.put(key, firstFamilyData);
         }
