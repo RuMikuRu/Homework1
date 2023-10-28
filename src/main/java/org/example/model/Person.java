@@ -105,6 +105,20 @@ public class Person {
         this.informatics = informatics;
     }
 
+    public Character getFirstFamily() {
+        return this.getFamily().charAt(0);
+    }
+
+    public Integer getGrade() {
+        return ((this.getGeometry() + this.getRus() + this.getPhysics() + this.getMathematics()
+                + this.getLiterature() + this.getInformatics()));
+    }
+
+    public boolean getExcellent() {
+        return this.getRus() == 5 && this.getPhysics() == 5 && this.getMathematics() == 5 && this.getLiterature() == 5 &&
+                this.getInformatics() == 5 && this.getGeometry() == 5;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
