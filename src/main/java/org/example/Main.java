@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.dto.UserRepository;
+import org.example.dto.impl.UserRepositoryImpl;
 import org.example.service.StudentService;
 import org.example.ui.Command;
 import org.example.ui.CommandBuilder;
@@ -16,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DataLoader dataLoader = new CsvDataLoader("/home/iliyatmh/IdeaProjects/Homework1/src/main/resources/students.csv");
+        dataLoader.load();
         StudentService studentService = new StudentService(dataLoader);
         CommandBuilder commandBuilder = new CommandBuilder(studentService);
         commandBuilder.printMenu();
@@ -25,6 +28,8 @@ public class Main {
             command.execute();
             commandName = scanner.nextInt();
         }
+//        UserRepository repository = new UserRepositoryImpl();
+//        System.out.println(repository.averageGradeByGroup(10));
     }
 
     public static void printMenu() {

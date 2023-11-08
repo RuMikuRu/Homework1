@@ -1,6 +1,7 @@
 package org.example.model;
 
 public class Person {
+    private Long id;
     private String family;
     private String name;
     private int age;
@@ -12,7 +13,9 @@ public class Person {
     private int geometry = 0;
     private int informatics = 0;
 
-    public Person(String family, String name, int age, int group, int physics, int mathematics, int rus, int literature, int geometry, int informatics) {
+    public Person(Long id,String family, String name, int age, int group, int physics,
+                  int mathematics, int rus, int literature, int geometry, int informatics) {
+        this.id = id;
         this.family = family;
         this.name = name;
         this.age = age;

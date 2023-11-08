@@ -20,11 +20,11 @@ public class FindStudentsByLastNameCommand implements Command {
         System.out.print("Enter last name: ");
         String lastName = scanner.nextLine();
 
-        List<Person> students = studentService.findStudentsByLastName(lastName.charAt(0));
+        studentService.findStudentsByLastName(lastName);
 
         System.out.println("Students with last name " + lastName + ":");
-        for (Person student : students) {
-            System.out.println(student.getFamily() + " " + student.getName());
-        }
+//        for (Person student : students) {
+//            System.out.println(student.getFamily() + " " + student.getName());
+//        }
     }
 }

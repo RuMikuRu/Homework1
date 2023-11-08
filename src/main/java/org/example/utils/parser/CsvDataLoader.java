@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// FIXME: 29.10.2023 Переделать под bd
+
 public class CsvDataLoader implements DataLoader {
     private final String filename;
 
     public CsvDataLoader(String filename) {
         this.filename = filename;
     }
+
     @Override
     public List<Person> load() {
         List<Person> personList = new ArrayList<>();
@@ -33,7 +36,7 @@ public class CsvDataLoader implements DataLoader {
                 int geometry = Integer.parseInt(parts[8].trim());
                 int informatics = Integer.parseInt(parts[9].trim());
 
-                Person person = new Person(
+                Person person = new Person(1L,
                         family,
                         name,
                         age,
