@@ -19,7 +19,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DataLoader dataLoader = new CsvDataLoader("/home/iliyatmh/IdeaProjects/Homework1/src/main/resources/students.csv");
         dataLoader.load();
-        StudentService studentService = new StudentService(dataLoader);
+        StudentService studentService = new StudentService();
         CommandBuilder commandBuilder = new CommandBuilder(studentService);
         commandBuilder.printMenu();
         int commandName = scanner.nextInt();

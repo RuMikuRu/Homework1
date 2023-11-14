@@ -11,6 +11,10 @@ repositories {
 
 dependencies {
     implementation 'org.postgresql:postgresql:42.6.0'
+
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.16.0-rc1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0-rc1'
 }
 
 test {

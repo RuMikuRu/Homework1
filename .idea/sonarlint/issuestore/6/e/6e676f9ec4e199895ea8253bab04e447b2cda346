@@ -1,4 +1,8 @@
 
 G	java:S106"+Replace this use of System.out by a logger.(–Ç÷û8ÈŸ­˜·1
 L	java:S106"+Replace this use of System.out by a logger.(Ó¬Þìøÿÿÿÿ8ÉŸ­˜·1
-L	java:S106"+Replace this use of System.out by a logger.(»ò¬Úþÿÿÿÿ8ÊŸ­˜·1
+]	java:S125"<This block of commented-out lines of code should be removed.(ïð–£þÿÿÿÿ8‹‡ÛÆ¼1
+W
+java:S1128"5Remove this unused import 'org.example.model.Person'.(žú”òüÿÿÿÿ8Œ‡ÛÆ¼1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Œ‡ÛÆ¼1

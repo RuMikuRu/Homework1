@@ -1,6 +1,7 @@
 package org.example.dto.impl;
 
 import org.example.dto.UserRepository;
+import org.example.dto.model.PersonGrade;
 import org.example.model.Person;
 import org.example.utils.db.Connection;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     private Connection conn;
+
 
     @Override
     public void addPerson(Person person) {
@@ -80,25 +82,39 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Double averageGradeByGroup(int group) {
+    public List<PersonGrade> averageGradeByGroup(int group) {
         conn = new Connection();
         try {
-            ResultSet resultSet = conn.createConnection().executeQuery("SELECT (\n" +
-                    "    SELECT AVG(physics + mathematics + rus + literature + geometry + informatics)\n" +
-                    "    FROM public.Results\n" +
-                    "    WHERE student_id IN (\n" +
-                    "        SELECT student_id FROM public.Students WHERE group_id = " + group + "\n" +
-                    "    )\n" +
-                    ");\n");
-            resultSet.next();
-            return resultSet.getDouble("avg");
+            List<PersonGrade> personGradeList = new ArrayList<>();
+            ResultSet resultSet = conn.createConnection().executeQuery("SELECT \n" +
+                    "    results.student_id,\n" +
+                    "    students.family,\n" +
+                    "    students.name,\n" +
+                    "    AVG((results.physics + results.mathematics + results.rus + results.literature + results.geometry + results.informatics) / 6.0) OVER (PARTITION BY results.student_id) AS avg_cgrade\n" +
+                    "FROM \n" +
+                    "    students \n" +
+                    "INNER JOIN \n" +
+                    "    results on students.student_id = results.student_id \n" +
+                    "WHERE \n" +
+                    "    students.group_id = " + group + ";");
+
+            while (resultSet.next()){
+                PersonGrade personGrade = new PersonGrade(
+                        resultSet.getLong("student_id"),
+                        resultSet.getString("family"),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("avg_grade")
+                );
+                personGradeList.add(personGrade);
+            }
+            return personGradeList;
         } catch (Exception e) {
             System.out.println("Ошибка к подключению базы данных :$e");
         } finally {
             conn.disconnect();
         }
 
-        return 0.0;
+        return null;
     }
 
     @Override
@@ -169,9 +185,33 @@ public class UserRepositoryImpl implements UserRepository {
             }
         } catch (Exception e) {
             System.out.println("Ошибка к подключению базы данных :$e");
-        }
-        finally {
+        } finally {
             conn.disconnect();
+        }
+    }
+
+    @Override
+    public Boolean updateGrade(Person person) {
+        conn = new Connection();
+        try {
+            conn.createConnection().execute("UPDATE results\n" +
+                    "SET physics = " + person.getPhysics() + ",\n" +
+                    "rus = " + person.getRus() + ",\n" +
+                    "literature = " + person.getLiterature() + ",\n" +
+                    "mathematics = " + person.getMathematics() + ",\n" +
+                    "geometry = " + person.getGeometry() + ",\n" +
+                    "informatics = " + person.getInformatics() + ",\n" +
+                    "WHERE student_id IN (\n" +
+                    "  SELECT student_id\n" +
+                    "  FROM students s\n" +
+                    "  WHERE s.family = '" + person.getFamily() + "' \n" +
+                    "  AND s.name = '" + person.getName() + "' \n" +
+                    "  AND s.group_id = " + person.getGroup() + "\n" +
+                    ");");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

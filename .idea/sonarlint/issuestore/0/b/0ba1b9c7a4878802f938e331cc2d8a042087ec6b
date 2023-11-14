@@ -1,16 +1,7 @@
 
-X	java:S125"<This block of commented-out lines of code should be removed.(‹Éÿ¼8á€éòº1
-L	java:S106 "+Replace this use of System.out by a logger.(ùñ¬øüÿÿÿÿ8ª¤Šç·1
+X	java:S125"<This block of commented-out lines of code should be removed.(ÈĞ†Á8µ†ÛÆ¼1
 G	java:S106$"+Replace this use of System.out by a logger.(Îñë8ò€éòº1
-a
-java:S1128"?Remove this unused import 'org.example.service.StudentService'.(ìÆ”³úÿÿÿÿ8û€éòº1
-U
-java:S1128"3Remove this unused import 'org.example.ui.Command'.(ç¬üşÿÿÿÿ8û€éòº1
-\
-java:S1128":Remove this unused import 'org.example.ui.CommandBuilder'.(¥¶®ìÿÿÿÿÿ8ü€éòº1
-`
-java:S1128"CRemove this unused import 'org.example.utils.parser.CsvDataLoader'.(¡˜”8ü€éòº1
-b
-java:S1128	"@Remove this unused import 'org.example.utils.parser.DataLoader'.(÷Í½Âÿÿÿÿÿ8ü€éòº1
-P
-java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ8ı€éòº1
+X
+java:S1128";Remove this unused import 'org.example.dto.UserRepository'.(¦Áú¦8½†ÛÆ¼1
+f
+java:S1128"DRemove this unused import 'org.example.dto.impl.UserRepositoryImpl'.(ä¸Şÿÿÿÿÿ8¿†ÛÆ¼1
